@@ -16,7 +16,7 @@ class Phrase {
         if (letter === ' ') {
           return `<li class="space">${letter}</li>`;
         } else {
-          return `<li class="hide letter">${letter}</li>`;
+          return `<li class="hide letter ${letter}">${letter}</li>`;
         }
       })
       .forEach(item => ul.insertAdjacentHTML('beforeend', item));
@@ -32,7 +32,7 @@ class Phrase {
     const matchingLetter = phraseLetters.includes(letter);
 
     if (matchingLetter) {
-      this.showMatchedLetter();
+      this.showMatchedLetter(letter);
     } else {
       game.removeLife();
     }
@@ -42,7 +42,11 @@ class Phrase {
    * Displays passed letter on screen after a match is found
    * @param (string) letter - Letter to display
    */
-  showMatchedLetter() {
-    console.log('showed matched letter!');
+  showMatchedLetter(letter) {
+    const matchedLetters = document.querySelectorAll(`.${letter}`);
+    matchedLetters.forEach(letter => {
+      letter.classList.remove('hide');
+      letter.classList.add('show');
+    });
   }
 }
