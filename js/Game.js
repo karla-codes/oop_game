@@ -15,15 +15,13 @@ class Game {
     this.activePhrase = null;
   }
 
-  // hides start screen overlay and initializes game
-  // startGame() {
-  //   const overlay = document.querySelector('#overlay');
-  //   overlay.style.display = 'none';
-  //   this.activePhrase.addPhraseToDisplay();
-  // }
-  // get activePhrase() {
-  //   return this.activePhrase;
-  // }
+  // hides start screen overlay and initializes game by selecting a random phrase
+  // and displaying it to the user
+  startGame() {
+    const overlay = document.querySelector('#overlay');
+    overlay.style.display = 'none';
+    this.getRandomPhrase().addPhraseToDisplay();
+  }
 
   /**
    * Selects random phrase from phrases property
