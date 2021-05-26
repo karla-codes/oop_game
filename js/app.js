@@ -2,16 +2,19 @@
  * Project 4 - OOP Game App
  * app.js */
 
-// const phrase = new Phrase();
-// const game = new Game();
-// game.startGame();
-// console.log(game.activePhrase.phrase);
-// game.getRandomPhrase().addPhraseToDisplay();
-
-// console.log(game.phrases);
 let game;
 const startGameBtn = document.querySelector('#btn__reset');
+const gameKeyboard = document.querySelector('#qwerty');
+const letters = gameKeyboard.querySelectorAll('btn');
 
 startGameBtn.addEventListener('click', e => {
-  game = new Game().startGame();
+  game = new Game();
+  game.startGame();
+});
+
+gameKeyboard.addEventListener('click', e => {
+  const key = e.target;
+  if (key.className === 'key') {
+    game.handleInteraction(key);
+  }
 });

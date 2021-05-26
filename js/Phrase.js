@@ -23,8 +23,17 @@ class Phrase {
     return listItems;
   }
 
-  // //checks to see if the letter selected by the player matches a letter in the phrase
-  // checkLetter(selectedLetter) {}
-  // // reveals the letter(s) on the board that matches the player's selection
-  // showMatchedLetter() {}
+  /**
+   * Checks if passed letter is in phrase
+   * @param (string) letter - Letter to check
+   */
+  checkLetter(letter) {
+    // const
+  }
+
+  /**
+   * Displays passed letter on screen after a match is found
+   * @param (string) letter - Letter to display
+   */
+  showMatchedLetter() {}
 }
