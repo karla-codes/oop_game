@@ -38,7 +38,7 @@ class Game {
     button.disabled = true;
 
     // check if selected letter matches any letter(s) from phrase
-    this.activePhrase.checkLetter(button.textContent);
+    this.activePhrase.checkLetter(button);
   }
 
   /**

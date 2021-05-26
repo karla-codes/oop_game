@@ -27,12 +27,13 @@ class Phrase {
    * Checks if passed letter is in phrase
    * @param (string) letter - Letter to check
    */
-  checkLetter(letter) {
+  checkLetter(button) {
+    const buttonLetter = button.textContent;
     const phraseLetters = this.phrase.split('');
-    const matchingLetter = phraseLetters.includes(letter);
+    const matchingLetter = phraseLetters.includes(buttonLetter);
 
     if (matchingLetter) {
-      this.showMatchedLetter(letter);
+      this.showMatchedLetter(button, buttonLetter);
     } else {
       game.removeLife();
     }
@@ -42,8 +43,9 @@ class Phrase {
    * Displays passed letter on screen after a match is found
    * @param (string) letter - Letter to display
    */
-  showMatchedLetter(letter) {
+  showMatchedLetter(button, letter) {
     const matchedLetters = document.querySelectorAll(`.${letter}`);
+    button.classList.add('chosen');
     matchedLetters.forEach(letter => {
       letter.classList.remove('hide');
       letter.classList.add('show');
