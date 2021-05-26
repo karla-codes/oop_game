@@ -11,16 +11,8 @@
 //   new Phrase('console log'),
 // ];
 
-function logRandomPhrase(phrase) {
-  console.log(phrase.phrase);
-}
-
-const game = new Game();
-
-logRandomPhrase(game.getRandomPhrase());
-logRandomPhrase(game.getRandomPhrase());
-logRandomPhrase(game.getRandomPhrase());
-logRandomPhrase(game.getRandomPhrase());
+// const phrase = new Phrase();
+// const game = new Game();
+// game.getRandomPhrase().addPhraseToDisplay();
 
 // console.log(game.phrases);
-// const phrase = new Phrase();
