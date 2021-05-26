@@ -28,12 +28,21 @@ class Phrase {
    * @param (string) letter - Letter to check
    */
   checkLetter(letter) {
-    // const
+    const phraseLetters = this.phrase.split('');
+    const matchingLetter = phraseLetters.includes(letter);
+
+    if (matchingLetter) {
+      this.showMatchedLetter();
+    } else {
+      game.removeLife();
+    }
   }
 
   /**
    * Displays passed letter on screen after a match is found
    * @param (string) letter - Letter to display
    */
-  showMatchedLetter() {}
+  showMatchedLetter() {
+    console.log('showed matched letter!');
+  }
 }

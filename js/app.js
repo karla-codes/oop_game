@@ -5,7 +5,7 @@
 let game;
 const startGameBtn = document.querySelector('#btn__reset');
 const gameKeyboard = document.querySelector('#qwerty');
-const letters = gameKeyboard.querySelectorAll('btn');
+// const letters = gameKeyboard.querySelectorAll('btn');
 
 startGameBtn.addEventListener('click', e => {
   game = new Game();

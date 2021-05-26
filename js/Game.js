@@ -34,7 +34,11 @@ class Game {
   }
 
   handleInteraction(button) {
-    console.log(button.textContent);
+    // disable selected letter
+    button.disabled = true;
+
+    // check if selected letter matches any letter(s) from phrase
+    this.activePhrase.checkLetter(button.textContent);
   }
 
   /**
@@ -48,7 +52,9 @@ class Game {
    * Removes a life from the scoreboard
    * Checks if player has remaining lives and ends game if player is out
    */
-  // removeLife() {}
+  removeLife() {
+    console.log('removed life successfully!');
+  }
 
   /**
    * Displays game over message
