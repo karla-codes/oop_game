@@ -18,4 +18,4 @@
 Optional extra credit tasks that I've added to this project:
 
 - Added keyboard funcitonality so that players can choose between the gameboard keyboard or their own physical computer keyboard.
-- [ ] in progress: make project my own by changing
+- [ ] in progress: make project my own by experimenting with color, fonts, etc.
