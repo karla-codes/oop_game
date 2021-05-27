@@ -46,7 +46,16 @@ class Game {
    * Checks for winning move
    * @return {boolean} True if game has been won, false if game wasn't won
    */
-  // checkForWin() {}
+  checkForWin() {
+    const phraseLetters = phrase.querySelectorAll('.letter');
+    const displayedLetters = phrase.querySelectorAll('.show');
+
+    if (phraseLetters.length === displayedLetters.length) {
+      return this.gameOver(true);
+    } else {
+      return false;
+    }
+  }
 
   /**
    * Increases the value of the missed property
@@ -68,7 +77,7 @@ class Game {
     this.missed++;
 
     if (this.missed === 5) {
-      return this.gameOver(false);
+      this.gameOver(false);
     } else {
       return;
     }

@@ -51,7 +51,8 @@ class Phrase {
       letter.classList.remove('hide');
       letter.classList.add('show');
     });
+
     // check if player has revealed all letters
-    // Game.checkForWin()
+    game.checkForWin();
   }
 }
