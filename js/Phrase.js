@@ -34,7 +34,7 @@ class Phrase {
 
     if (matchingLetter) {
       button.classList.add('chosen');
-      this.showMatchedLetter(button, buttonLetter);
+      this.showMatchedLetter(buttonLetter);
     } else {
       button.classList.add('wrong');
       game.removeLife();
@@ -51,5 +51,7 @@ class Phrase {
       letter.classList.remove('hide');
       letter.classList.add('show');
     });
+    // check if player has revealed all letters
+    // Game.checkForWin()
   }
 }

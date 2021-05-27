@@ -18,7 +18,6 @@ class Game {
   // hides start screen overlay and initializes game by selecting a random phrase
   // and displaying it to the user
   startGame() {
-    const overlay = document.querySelector('#overlay');
     overlay.style.display = 'none';
     this.getRandomPhrase().addPhraseToDisplay();
   }
@@ -39,6 +38,8 @@ class Game {
 
     // check if selected letter matches any letter(s) from phrase
     this.activePhrase.checkLetter(button);
+
+    //
   }
 
   /**
@@ -53,12 +54,41 @@ class Game {
    * Checks if player has remaining lives and ends game if player is out
    */
   removeLife() {
-    console.log('removed life successfully!');
+    const hearts = document.querySelectorAll('.tries img');
+    const lostHeart = 'images/lostHeart.png';
+
+    const remainingHearts = [].slice
+      .call(hearts)
+      .filter(
+        heart => heart.attributes[0].textContent === 'images/liveHeart.png'
+      );
+
+    remainingHearts[0].attributes[0].textContent = lostHeart;
+
+    this.missed++;
+
+    if (this.missed === 5) {
+      return this.gameOver(false);
+    } else {
+      return;
+    }
   }
 
   /**
    * Displays game over message
    * @param {boolean} gameWon - Whether or not the user won the game
    */
-  // gameOver() {}
+  gameOver(gameWon) {
+    overlay.style.display = '';
+
+    if (gameWon) {
+      overlayH1.textContent = 'You win!';
+      overlay.classList.remove('start');
+      overlay.classList.add('win');
+    } else {
+      overlayH1.textContent = 'You Lose. Try Again!';
+      overlay.classList.remove('start');
+      overlay.classList.add('lose');
+    }
+  }
 }

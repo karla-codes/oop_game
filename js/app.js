@@ -5,6 +5,9 @@
 let game;
 const startGameBtn = document.querySelector('#btn__reset');
 const gameKeyboard = document.querySelector('#qwerty');
+const overlay = document.querySelector('#overlay');
+const overlayH1 = overlay.querySelector('h1');
+
 // const letters = gameKeyboard.querySelectorAll('btn');
 
 startGameBtn.addEventListener('click', e => {
