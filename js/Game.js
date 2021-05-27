@@ -19,6 +19,7 @@ class Game {
   // and displaying it to the user
   startGame() {
     overlay.style.display = 'none';
+    overlay.classList;
     this.getRandomPhrase().addPhraseToDisplay();
   }
 
@@ -92,11 +93,11 @@ class Game {
 
     if (gameWon) {
       overlayH1.textContent = 'You win!';
-      overlay.classList.remove('start');
+      overlay.className = '';
       overlay.classList.add('win');
     } else {
       overlayH1.textContent = 'You Lose. Try Again!';
-      overlay.classList.remove('start');
+      overlay.className = '';
       overlay.classList.add('lose');
     }
   }
