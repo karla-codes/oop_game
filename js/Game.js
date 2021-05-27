@@ -32,14 +32,15 @@ class Game {
     return this.activePhrase;
   }
 
+  /**
+   * Handles onscreen keyboard button clicks
+   * @param (HTMLButtonElement) button - The clicked button element
+   */
   handleInteraction(button) {
     // disable selected letter
     button.disabled = true;
-
     // check if selected letter matches any letter(s) from phrase
     this.activePhrase.checkLetter(button);
-
-    //
   }
 
   /**
@@ -63,7 +64,6 @@ class Game {
    * Checks if player has remaining lives and ends game if player is out
    */
   removeLife() {
-    const hearts = document.querySelectorAll('.tries img');
     const lostHeart = 'images/lostHeart.png';
 
     const remainingHearts = [].slice

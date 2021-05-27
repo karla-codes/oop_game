@@ -25,7 +25,7 @@ class Phrase {
 
   /**
    * Checks if passed letter is in phrase
-   * @param (string) letter - Letter to check
+   * @param (string) button - Letter to check
    */
   checkLetter(button) {
     const buttonLetter = button.textContent;
