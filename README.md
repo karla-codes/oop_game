@@ -18,4 +18,7 @@
 Optional extra credit tasks that I've added to this project:
 
 - Added keyboard funcitonality so that players can choose between the gameboard keyboard or their own physical computer keyboard.
-- [ ] in progress: make project my own by experimenting with color, fonts, etc.
+- Made the following style changes:
+  - Changed font to `Roboto`
+  - Changed background color of overlay to `#002e44`
+  - Changed background color of matching phrase letters to `#007bb6`
