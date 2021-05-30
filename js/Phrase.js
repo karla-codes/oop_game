@@ -25,19 +25,13 @@ class Phrase {
 
   /**
    * Checks if passed letter is in phrase
-   * @param (string) button - Letter to check
+   * @param (string) letter - Letter to check
    */
-  checkLetter(button) {
-    const buttonLetter = button.textContent;
-    const phraseLetters = this.phrase.split('');
-    const matchingLetter = phraseLetters.includes(buttonLetter);
-
-    if (matchingLetter) {
-      button.classList.add('chosen');
-      this.showMatchedLetter(buttonLetter);
+  checkLetter(letter) {
+    if (letter) {
+      return letter;
     } else {
-      button.classList.add('wrong');
-      game.removeLife();
+      return;
     }
   }
 
@@ -51,8 +45,5 @@ class Phrase {
       letter.classList.remove('hide');
       letter.classList.add('show');
     });
-
-    // check if player has revealed all letters
-    game.checkForWin();
   }
 }

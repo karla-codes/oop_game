@@ -18,9 +18,16 @@ class Game {
   // hides start screen overlay and initializes game by selecting a random phrase
   // and displaying it to the user
   startGame() {
+    // hide start screen overlay
     overlay.style.display = 'none';
-    overlay.classList;
-    this.getRandomPhrase().addPhraseToDisplay();
+    // overlay.classList;
+
+    // call getRandomPhrase()
+    const phrase = this.getRandomPhrase();
+    // set this.activePhrase
+    this.activePhrase = phrase;
+    // call addPhraseToDisplay()
+    this.activePhrase.addPhraseToDisplay();
   }
 
   /**
@@ -29,8 +36,8 @@ class Game {
    */
   getRandomPhrase() {
     const randomNum = Math.floor(Math.random() * this.phrases.length);
-    this.activePhrase = this.phrases[randomNum];
-    return this.activePhrase;
+    const randomPhrase = this.phrases[randomNum];
+    return randomPhrase;
   }
 
   /**
@@ -40,8 +47,38 @@ class Game {
   handleInteraction(button) {
     // disable selected letter
     button.disabled = true;
-    // check if selected letter matches any letter(s) from phrase
-    this.activePhrase.checkLetter(button);
+
+    // check to see if button clicked contains matching letter
+    const buttonLetter = button.textContent;
+    const activePhrase = this.activePhrase;
+    const phrase = activePhrase.phrase;
+    const phraseLetters = phrase.split('');
+    console.log(phraseLetters);
+    const matchingLetter = phraseLetters.includes(buttonLetter);
+    console.log(matchingLetter);
+
+    // if phrase includes the guessed letter, add the `chosen` CSS class to
+    // selected letter's keyboard button, call showMatchedLetter() method on the
+    // phrase, and then call the checkForWin() method.
+    // if phrase does NOT include the guessed letter, add 'wrong' CSS class to
+    // selected letter's keyboard button and call the removeLife() method
+    console.log(activePhrase);
+    if (matchingLetter) {
+      button.classList.add('chosen');
+      activePhrase.showMatchedLetter(buttonLetter);
+    } else {
+      button.classList.add('wrong');
+      this.removeLife();
+    }
+
+    // if the player has won the game, call the gameOver() method
+    const gameResults = this.checkForWin();
+
+    if (gameResults) {
+      this.gameOver(gameResults);
+    } else {
+      return;
+    }
   }
 
   /**
@@ -53,7 +90,7 @@ class Game {
     const displayedLetters = phrase.querySelectorAll('.show');
 
     if (phraseLetters.length === displayedLetters.length) {
-      return this.gameOver(true);
+      return true;
     } else {
       return false;
     }
@@ -90,7 +127,6 @@ class Game {
    */
   gameOver(gameWon) {
     overlay.style.display = '';
-
     if (gameWon) {
       overlayH1.textContent = 'You win!';
       overlay.className = '';
@@ -100,5 +136,18 @@ class Game {
       overlay.className = '';
       overlay.classList.add('lose');
     }
+
+    const liItems = phrase.querySelectorAll('li');
+    liItems.forEach(li => li.remove());
+
+    keyboardButtons.forEach(button => {
+      button.disabled = false;
+      button.classList.remove('chosen', 'wrong');
+      button.classList.add('key');
+    });
+
+    hearts.forEach(
+      heart => (heart.attributes[0].textContent = 'images/liveHeart.png')
+    );
   }
 }
