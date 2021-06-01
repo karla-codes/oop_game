@@ -28,11 +28,8 @@ class Phrase {
    * @param (string) letter - Letter to check
    */
   checkLetter(letter) {
-    if (letter) {
-      return letter;
-    } else {
-      return;
-    }
+    const phraseLetters = this.phrase.split('');
+    return phraseLetters.includes(letter);
   }
 
   /**

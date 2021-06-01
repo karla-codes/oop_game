@@ -20,13 +20,9 @@ class Game {
   startGame() {
     // hide start screen overlay
     overlay.style.display = 'none';
-    // overlay.classList;
-
-    // call getRandomPhrase()
+    // set activePhrase value
     const phrase = this.getRandomPhrase();
-    // set this.activePhrase
     this.activePhrase = phrase;
-    // call addPhraseToDisplay()
     this.activePhrase.addPhraseToDisplay();
   }
 
@@ -49,35 +45,26 @@ class Game {
     button.disabled = true;
 
     // check to see if button clicked contains matching letter
-    const buttonLetter = button.textContent;
-    const activePhrase = this.activePhrase;
-    const phrase = activePhrase.phrase;
-    const phraseLetters = phrase.split('');
-    console.log(phraseLetters);
-    const matchingLetter = phraseLetters.includes(buttonLetter);
-    console.log(matchingLetter);
+    const matchingLetter = this.activePhrase.checkLetter(button.textContent);
 
     // if phrase includes the guessed letter, add the `chosen` CSS class to
     // selected letter's keyboard button, call showMatchedLetter() method on the
     // phrase, and then call the checkForWin() method.
     // if phrase does NOT include the guessed letter, add 'wrong' CSS class to
     // selected letter's keyboard button and call the removeLife() method
-    console.log(activePhrase);
     if (matchingLetter) {
       button.classList.add('chosen');
-      activePhrase.showMatchedLetter(buttonLetter);
+      this.activePhrase.showMatchedLetter(button.textContent);
+
+      // if the player has won the game, call the gameOver() method
+      const gameResults = this.checkForWin();
+
+      if (gameResults) {
+        this.gameOver(true);
+      }
     } else {
       button.classList.add('wrong');
       this.removeLife();
-    }
-
-    // if the player has won the game, call the gameOver() method
-    const gameResults = this.checkForWin();
-
-    if (gameResults) {
-      this.gameOver(gameResults);
-    } else {
-      return;
     }
   }
 
@@ -113,11 +100,8 @@ class Game {
     remainingHearts[0].attributes[0].textContent = lostHeart;
 
     this.missed++;
-
     if (this.missed === 5) {
       this.gameOver(false);
-    } else {
-      return;
     }
   }
 
@@ -127,6 +111,7 @@ class Game {
    */
   gameOver(gameWon) {
     overlay.style.display = '';
+
     if (gameWon) {
       overlayH1.textContent = 'You win!';
       overlay.className = '';
@@ -137,8 +122,12 @@ class Game {
       overlay.classList.add('lose');
     }
 
-    const liItems = phrase.querySelectorAll('li');
-    liItems.forEach(li => li.remove());
+    this.resetGame();
+  }
+
+  resetGame() {
+    const ul = phrase.querySelector('ul');
+    ul.innerHTML = '';
 
     keyboardButtons.forEach(button => {
       button.disabled = false;
