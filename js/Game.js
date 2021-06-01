@@ -47,22 +47,19 @@ class Game {
     // check to see if button clicked contains matching letter
     const matchingLetter = this.activePhrase.checkLetter(button.textContent);
 
-    // if phrase includes the guessed letter, add the `chosen` CSS class to
-    // selected letter's keyboard button, call showMatchedLetter() method on the
-    // phrase, and then call the checkForWin() method.
-    // if phrase does NOT include the guessed letter, add 'wrong' CSS class to
-    // selected letter's keyboard button and call the removeLife() method
+    // check if phrase include the chosen letter
     if (matchingLetter) {
       button.classList.add('chosen');
+      // display letter on screen if it matches
       this.activePhrase.showMatchedLetter(button.textContent);
-
-      // if the player has won the game, call the gameOver() method
+      // check if game has been won
       const gameResults = this.checkForWin();
-
+      // if the player has won the game, call the gameOver() method
       if (gameResults) {
         this.gameOver(true);
       }
     } else {
+      // remove a life
       button.classList.add('wrong');
       this.removeLife();
     }
